@@ -28,7 +28,7 @@ public class Verdict<T> : VerdictBase<T>
     };
 
     public static Verdict<T> Success(T value) => new(value);
-    public static Verdict<T> Failure() => new(VerdictStatus.Failure);
+    public static Verdict<T> Failure(string message) => new(VerdictStatus.Failure) { ErrorMessage = message };
     public static Verdict<T> Created(T value) => new(VerdictStatus.Created) { Payload = value };
 
     public static Verdict<T> Created(T value, string location) =>
