@@ -11,8 +11,8 @@ public class Verdict : Verdict<Verdict>
     {
     }
 
-
     public static Verdict Success() => new();
+    public new static Verdict Failure() => new(VerdictStatus.Failure);
     public static Verdict<T> Success<T>(T value) => new(value);
     public static Verdict<T> Created<T>(T value) => new(value);
     public new static Verdict NoContent() => new(VerdictStatus.NoContent);
