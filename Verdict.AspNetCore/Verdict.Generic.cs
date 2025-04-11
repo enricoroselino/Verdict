@@ -36,32 +36,32 @@ public class Verdict<T> : VerdictBase<T>
 
     public static Verdict<T> NoContent() => new(VerdictStatus.NoContent);
 
-    public static Verdict<T> NotFound(string errorMessage) =>
-        new(VerdictStatus.NotFound) { ErrorMessage = errorMessage };
+    public static Verdict<T> NotFound(string message) =>
+        new(VerdictStatus.NotFound) { ErrorMessage = message };
 
-    public static Verdict<T> Forbidden(string? errorMessage = null) => new(VerdictStatus.Forbidden)
-        { ErrorMessage = errorMessage ?? "Forbidden" };
+    public static Verdict<T> Forbidden(string? message = null) => new(VerdictStatus.Forbidden)
+        { ErrorMessage = message ?? "Forbidden" };
 
-    public static Verdict<T> Unauthorized(string? errorMessage = null, string? errorCode = null) =>
+    public static Verdict<T> Unauthorized(string? message = null, string? errorCode = null) =>
         new(VerdictStatus.Unauthorized)
         {
-            ErrorMessage = errorMessage ?? "Unauthorized",
+            ErrorMessage = message ?? "Unauthorized",
             ErrorCode = errorCode
         };
 
-    public static Verdict<T> BadRequest(string errorMessage) =>
-        new(VerdictStatus.BadRequest) { ErrorMessage = errorMessage };
+    public static Verdict<T> BadRequest(string message) =>
+        new(VerdictStatus.BadRequest) { ErrorMessage = message };
 
     public static Verdict<T> BadRequest(Dictionary<string, string> errors) =>
         new(VerdictStatus.BadRequest)
             { ValidationErrors = errors, ErrorMessage = "One or more validation failures have occurred." };
 
-    public static Verdict<T> UnprocessableEntity(string errorMessage) =>
-        new(VerdictStatus.UnprocessableEntity) { ErrorMessage = errorMessage };
+    public static Verdict<T> UnprocessableEntity(string message) =>
+        new(VerdictStatus.UnprocessableEntity) { ErrorMessage = message };
 
-    public static Verdict<T> Conflict(string errorMessage) =>
-        new(VerdictStatus.Conflict) { ErrorMessage = errorMessage };
+    public static Verdict<T> Conflict(string message) =>
+        new(VerdictStatus.Conflict) { ErrorMessage = message };
 
-    public static Verdict<T> InternalError(string errorMessage) =>
-        new(VerdictStatus.InternalError) { ErrorMessage = errorMessage };
+    public static Verdict<T> InternalError(string message) =>
+        new(VerdictStatus.InternalError) { ErrorMessage = message };
 }
