@@ -29,6 +29,11 @@ public class Verdict<T> : VerdictBase<T>
 
     public static Verdict<T> Success(T value) => new(value);
     public static Verdict<T> Failure(string message) => new(VerdictStatus.Failure) { ErrorMessage = message };
+
+    public static Verdict<T> BadRequest(Dictionary<string, string> errors) =>
+        new(VerdictStatus.BadRequest)
+            { ValidationErrors = errors, ErrorMessage = "One or more validation failures have occurred." };
+
     public static Verdict<T> Created(T value) => new(VerdictStatus.Created) { Payload = value };
 
     public static Verdict<T> Created(T value, string location) =>
@@ -51,10 +56,6 @@ public class Verdict<T> : VerdictBase<T>
 
     public static Verdict<T> BadRequest(string message) =>
         new(VerdictStatus.BadRequest) { ErrorMessage = message };
-
-    public static Verdict<T> BadRequest(Dictionary<string, string> errors) =>
-        new(VerdictStatus.BadRequest)
-            { ValidationErrors = errors, ErrorMessage = "One or more validation failures have occurred." };
 
     public static Verdict<T> UnprocessableEntity(string message) =>
         new(VerdictStatus.UnprocessableEntity) { ErrorMessage = message };
