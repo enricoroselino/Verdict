@@ -14,9 +14,14 @@ public class Verdict : Verdict<Verdict>
     public static Verdict Success() => new();
     public static Verdict<T> Success<T>(T value) => new(value);
     public new static Verdict Failure(string message) => new(VerdictStatus.Failure) { ErrorMessage = message };
+
     public new static Verdict BadRequest(Dictionary<string, string> errors) =>
         new(VerdictStatus.BadRequest)
             { ValidationErrors = errors, ErrorMessage = "One or more validation failures have occurred." };
+
+    public new static Verdict BadRequest(string message) =>
+        new(VerdictStatus.BadRequest) { ErrorMessage = message };
+
     public static Verdict<T> Created<T>(T value) => new(value);
     public new static Verdict NoContent() => new(VerdictStatus.NoContent);
 
@@ -32,9 +37,6 @@ public class Verdict : Verdict<Verdict>
             ErrorMessage = message ?? "Unauthorized",
             ErrorCode = errorCode,
         };
-
-    public new static Verdict BadRequest(string message) =>
-        new(VerdictStatus.BadRequest) { ErrorMessage = message };
 
     public new static Verdict UnprocessableEntity(string message) =>
         new(VerdictStatus.UnprocessableEntity) { ErrorMessage = message };
