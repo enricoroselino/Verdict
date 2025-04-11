@@ -1,4 +1,4 @@
-﻿namespace Verdict.AspNetCore.Extensions;
+﻿namespace Verdict.AspNetCore;
 
 public class InternalServerException : Exception
 {
