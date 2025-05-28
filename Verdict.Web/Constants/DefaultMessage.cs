@@ -1,4 +1,4 @@
-namespace Verdict.Web.Shared;
+namespace Verdict.Web.Constants;
 
 public static class DefaultMessage
 {

@@ -1,4 +1,4 @@
-using Verdict.Web.Shared;
+using Verdict.Web.Constants;
 
 namespace Verdict.Web;
 
@@ -6,32 +6,32 @@ public static class VerdictExtension
 {
     public static Verdict<T> Ok<T>(this Verdict<T> verdict)
     {
-        return verdict.WithReason(r => r.AddMetadata(WebMetadata.StatusCode, StatusEnum.Ok));
+        return verdict.WithReason(r => r.AddMetadata(WebMetadata.StatusCode, StatusCodes.Ok));
     }
 
     public static Verdict<T> Created<T>(this Verdict<T> verdict, string location = "")
     {
         return verdict.WithReason(r =>
-            r.AddMetadata(WebMetadata.StatusCode, StatusEnum.Created)
+            r.AddMetadata(WebMetadata.StatusCode, StatusCodes.Created)
                 .AddMetadata(WebMetadata.Location, location));
     }
 
     public static Verdict NoContent(this Verdict verdict)
     {
-        return verdict.WithReason(r => r.AddMetadata(WebMetadata.StatusCode, StatusEnum.NoContent));
+        return verdict.WithReason(r => r.AddMetadata(WebMetadata.StatusCode, StatusCodes.NoContent));
     }
 
     public static Verdict NotFound(this Verdict verdict)
     {
         return verdict.WithReason(r =>
-            r.AddMetadata(WebMetadata.StatusCode, StatusEnum.NotFound)
+            r.AddMetadata(WebMetadata.StatusCode, StatusCodes.NotFound)
                 .SetMessage(DefaultMessage.NotFound));
     }
 
     public static Verdict BadRequest(this Verdict verdict)
     {
         return verdict.WithReason(r =>
-            r.AddMetadata(WebMetadata.StatusCode, StatusEnum.BadRequest)
+            r.AddMetadata(WebMetadata.StatusCode, StatusCodes.BadRequest)
                 .SetMessage(DefaultMessage.BadRequest));
     }
 
@@ -44,7 +44,7 @@ public static class VerdictExtension
     public static Verdict Unauthorized(this Verdict verdict)
     {
         return verdict.WithReason(r =>
-            r.AddMetadata(WebMetadata.StatusCode, StatusEnum.Unauthorized)
+            r.AddMetadata(WebMetadata.StatusCode, StatusCodes.Unauthorized)
                 .SetMessage(DefaultMessage.Unauthorized));
     }
 
@@ -57,28 +57,28 @@ public static class VerdictExtension
     public static Verdict Forbidden(this Verdict verdict)
     {
         return verdict.WithReason(r =>
-            r.AddMetadata(WebMetadata.StatusCode, StatusEnum.Forbidden)
+            r.AddMetadata(WebMetadata.StatusCode, StatusCodes.Forbidden)
                 .SetMessage(DefaultMessage.Forbidden));
     }
 
     public static Verdict UnprocessableEntity(this Verdict verdict)
     {
         return verdict.WithReason(r =>
-            r.AddMetadata(WebMetadata.StatusCode, StatusEnum.UnprocessableEntity)
+            r.AddMetadata(WebMetadata.StatusCode, StatusCodes.UnprocessableEntity)
                 .SetMessage(DefaultMessage.UnprocessableEntity));
     }
 
     public static Verdict Conflict(this Verdict verdict)
     {
         return verdict.WithReason(r =>
-            r.AddMetadata(WebMetadata.StatusCode, StatusEnum.Conflict)
+            r.AddMetadata(WebMetadata.StatusCode, StatusCodes.Conflict)
                 .SetMessage(DefaultMessage.Conflict));
     }
 
     public static Verdict InternalServer(this Verdict verdict)
     {
         return verdict.WithReason(r =>
-            r.AddMetadata(WebMetadata.StatusCode, StatusEnum.InternalServerError)
+            r.AddMetadata(WebMetadata.StatusCode, StatusCodes.InternalServerError)
                 .SetMessage(DefaultMessage.InternalServerError));
     }
 }

@@ -1,6 +1,6 @@
-namespace Verdict.Web.Shared;
+namespace Verdict.Web.Constants;
 
-public enum StatusEnum
+public enum StatusCodes
 {
     Ok = 200,
     NoContent = 204,
