@@ -3,7 +3,7 @@
 namespace Verdict.Web.Models;
 
 [Serializable]
-public class ErrorResponse
+public class Error
 {
     [JsonPropertyOrder(1)] public int StatusCode { get; protected set; }
     [JsonPropertyOrder(2)] public string RequestId { get; protected set; } = string.Empty;
@@ -12,18 +12,16 @@ public class ErrorResponse
     [JsonPropertyOrder(5)] public string? ErrorCode { get; protected set; }
     [JsonPropertyOrder(6)] public Dictionary<string, string>? ValidationErrors { get; protected set; }
 
-    private ErrorResponse() : base()
+    private Error()
     {
     }
 
-    public static ErrorResponse Create(int statusCode, string message, string requestId, string path)
+    public static Error Create(int statusCode, string message)
     {
-        return new ErrorResponse()
+        return new Error()
         {
             StatusCode = statusCode,
             Message = message,
-            RequestId = requestId,
-            Path = path,
         };
     }
 
