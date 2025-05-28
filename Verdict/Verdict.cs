@@ -35,6 +35,7 @@ public class Verdict<T> : IVerdict
 
     public static Verdict<T> Success(T value) => new Verdict<T>(value) { Reason = new Success() };
     public static Verdict<T> Failed(string message) => new Verdict<T>() { Reason = new Failure(message) };
+
     public Verdict<T> WithReason(Action<Reason> configure)
     {
         configure(Reason);
@@ -51,6 +52,7 @@ public class Verdict : Verdict<Verdict>
     public static Verdict Success() => new Verdict() { Reason = new Success() };
     public static Verdict<T> Success<T>(T value) => new Verdict<T>(value) { Reason = new Success() };
     public new static Verdict Failed(string message) => new Verdict() { Reason = new Failure(message) };
+
     public new Verdict WithReason(Action<Reason> configure)
     {
         configure(Reason);

@@ -13,7 +13,7 @@ public abstract class Reason : IReason
 {
     public Dictionary<string, object> Metadata { get; }
     public Dictionary<string, string> Errors { get; }
-    public string Message { get; protected set; } = string.Empty;
+    public string Message { get; private set; } = string.Empty;
 
     protected Reason()
     {
@@ -38,7 +38,7 @@ public abstract class Reason : IReason
 
     public Reason AddMetadata(string key, object value)
     {
-        Metadata[key] = value;  // Overwrites if exists
+        Metadata[key] = value; // Overwrites if exists
         return this;
     }
 
@@ -49,6 +49,12 @@ public abstract class Reason : IReason
             AddMetadata(kvp.Key, kvp.Value);
         }
 
+        return this;
+    }
+
+    public Reason SetMessage(string message)
+    {
+        Message = message;
         return this;
     }
 }
