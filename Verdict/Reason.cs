@@ -5,6 +5,8 @@ public interface IReason
     public Dictionary<string, object> Metadata { get; }
     public Dictionary<string, string> Errors { get; }
     public string Message { get; }
+    public Reason AddMetadata(Dictionary<string, object> metadata);
+    public Reason AddError(Dictionary<string, string> errors);
 }
 
 public abstract class Reason : IReason
@@ -24,15 +26,29 @@ public abstract class Reason : IReason
         Message = message;
     }
 
-    public Reason AddError(string key, string value)
+    public Reason AddError(Dictionary<string, string> errors)
     {
-        Errors.Add(key, value);
+        foreach (var kvp in errors)
+        {
+            Metadata[kvp.Key] = kvp.Value; // Overwrites if exists
+        }
+
         return this;
     }
 
     public Reason AddMetadata(string key, object value)
     {
-        Metadata.TryAdd(key, value);
+        Metadata[key] = value;  // Overwrites if exists
+        return this;
+    }
+
+    public Reason AddMetadata(Dictionary<string, object> metadata)
+    {
+        foreach (var kvp in metadata)
+        {
+            AddMetadata(kvp.Key, kvp.Value);
+        }
+
         return this;
     }
 }
