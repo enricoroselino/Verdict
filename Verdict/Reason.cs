@@ -54,6 +54,8 @@ public abstract class Reason : IReason
 
     public Reason SetMessage(string message)
     {
+        if (!string.IsNullOrWhiteSpace(Message)) return this;
+
         Message = message;
         return this;
     }
