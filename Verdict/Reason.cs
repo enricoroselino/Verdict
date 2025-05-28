@@ -5,8 +5,10 @@ public interface IReason
     public Dictionary<string, object> Metadata { get; }
     public Dictionary<string, string> Errors { get; }
     public string Message { get; }
-    public Reason AddMetadata(Dictionary<string, object> metadata);
-    public Reason AddError(Dictionary<string, string> errors);
+    public IReason AddMetadata(string key, object value);
+    public IReason AddMetadata(Dictionary<string, object> metadata);
+    public IReason AddError(Dictionary<string, string> errors);
+    public IReason SetMessage(string message);
 }
 
 public abstract class Reason : IReason
@@ -26,7 +28,7 @@ public abstract class Reason : IReason
         Message = message;
     }
 
-    public Reason AddError(Dictionary<string, string> errors)
+    public IReason AddError(Dictionary<string, string> errors)
     {
         foreach (var kvp in errors)
         {
@@ -36,13 +38,13 @@ public abstract class Reason : IReason
         return this;
     }
 
-    public Reason AddMetadata(string key, object value)
+    public IReason AddMetadata(string key, object value)
     {
         Metadata[key] = value; // Overwrites if exists
         return this;
     }
 
-    public Reason AddMetadata(Dictionary<string, object> metadata)
+    public IReason AddMetadata(Dictionary<string, object> metadata)
     {
         foreach (var kvp in metadata)
         {
@@ -52,7 +54,7 @@ public abstract class Reason : IReason
         return this;
     }
 
-    public Reason SetMessage(string message)
+    public IReason SetMessage(string message)
     {
         if (!string.IsNullOrWhiteSpace(Message)) return this;
 
