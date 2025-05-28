@@ -16,8 +16,6 @@ public class ErrorResponse
     {
     }
 
-    public const string ContentType = "application/json";
-
     public static ErrorResponse Create(int statusCode, string message, string requestId, string path)
     {
         return new ErrorResponse()
