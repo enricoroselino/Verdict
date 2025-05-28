@@ -10,8 +10,8 @@ public interface IVerdict
 
 public class Verdict<T> : IVerdict
 {
-    public T Payload { get; protected init; } = default!;
-    public IReason Reason { get; protected init; } = null!;
+    public T Payload { get; internal set; } = default!;
+    public IReason Reason { get; internal set; } = null!;
     public bool IsSuccess => Reason is Success;
     public bool IsFailure => !IsSuccess;
     public object? GetValue() => Payload;
