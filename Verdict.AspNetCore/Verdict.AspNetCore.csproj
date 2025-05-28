@@ -9,6 +9,8 @@
         <Title>Verdict.AspNetCore</Title>
         <Authors>Enrico Roselino</Authors>
         <PackageProjectUrl>https://github.com/nebx-id/Verdict</PackageProjectUrl>
+        <Description>Simple C# result pattern inspired from altmann/FluentResults and ardalis/Result</Description>
+        <RepositoryUrl>https://github.com/nebx-id/Verdict</RepositoryUrl>
     </PropertyGroup>
     
     <ItemGroup>
