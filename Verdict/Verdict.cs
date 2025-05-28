@@ -3,7 +3,7 @@
 public interface IVerdict
 {
     public object? GetValue();
-    public IReason Reason { get; }
+    public IReason GetReason();
     public bool IsSuccess { get; }
     public bool IsFailure { get; }
 }
@@ -11,10 +11,11 @@ public interface IVerdict
 public class Verdict<T> : IVerdict
 {
     public T Payload { get; internal init; } = default!;
-    public IReason Reason { get; internal init; } = null!;
+    public Reason Reason { get; internal init; } = null!;
     public bool IsSuccess => Reason is Success;
     public bool IsFailure => !IsSuccess;
     public object? GetValue() => Payload;
+    public IReason GetReason() => Reason;
 
     public static implicit operator Verdict<T>(Verdict verdict) => new Verdict<T>()
     {
@@ -37,7 +38,7 @@ public class Verdict<T> : IVerdict
     public static Verdict<T> Failed() => new Verdict<T>() { Reason = new Failure() };
     public static Verdict<T> Failed(string message) => new Verdict<T>() { Reason = new Failure(message) };
 
-    public Verdict<T> WithReason(Action<IReason> configure)
+    public Verdict<T> WithReason(Action<Reason> configure)
     {
         configure(Reason);
         return this;
@@ -55,7 +56,7 @@ public class Verdict : Verdict<Verdict>
     public new static Verdict Failed() => new Verdict() { Reason = new Failure() };
     public new static Verdict Failed(string message) => new Verdict() { Reason = new Failure(message) };
 
-    public new Verdict WithReason(Action<IReason> configure)
+    public new Verdict WithReason(Action<Reason> configure)
     {
         configure(Reason);
         return this;
