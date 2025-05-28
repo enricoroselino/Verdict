@@ -5,8 +5,8 @@
         <ImplicitUsings>enable</ImplicitUsings>
         <Nullable>enable</Nullable>
         <GeneratePackageOnBuild>true</GeneratePackageOnBuild>
-        <PackageId>Nebx.Verdict</PackageId>
-        <Title>Nebx.Verdict</Title>
+        <PackageId>Verdict</PackageId>
+        <Title>Verdict</Title>
         <Authors>Enrico Roselino</Authors>
         <PackageProjectUrl>https://github.com/nebx-id/Verdict</PackageProjectUrl>
         <Description>Simple C# result pattern inspired from altmann/FluentResults and ardalis/Result</Description>
