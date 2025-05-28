@@ -2,14 +2,6 @@
 
 namespace Verdict;
 
-public interface IVerdict
-{
-    public object? GetValue();
-    public IReason GetReason();
-    public bool IsSuccess { get; }
-    public bool IsFailure { get; }
-}
-
 public class Verdict<T> : IVerdict
 {
     public T Payload { get; internal init; } = default!;
