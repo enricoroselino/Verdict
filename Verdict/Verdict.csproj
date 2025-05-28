@@ -4,6 +4,11 @@
         <TargetFramework>net6.0</TargetFramework>
         <ImplicitUsings>enable</ImplicitUsings>
         <Nullable>enable</Nullable>
+        <GeneratePackageOnBuild>true</GeneratePackageOnBuild>
+        <PackageId>Nebx.Verdict</PackageId>
+        <Title>Verdict</Title>
+        <Authors>Enrico Roselino</Authors>
+        <PackageProjectUrl>https://github.com/nebx-id/Verdict</PackageProjectUrl>
     </PropertyGroup>
 
 </Project>
