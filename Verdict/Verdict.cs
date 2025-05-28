@@ -1,4 +1,6 @@
-﻿namespace Verdict;
+﻿using Verdict.State;
+
+namespace Verdict;
 
 public interface IVerdict
 {

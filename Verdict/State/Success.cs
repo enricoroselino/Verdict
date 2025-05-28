@@ -1,4 +1,4 @@
-namespace Verdict;
+namespace Verdict.State;
 
 public class Success : Reason
 {
