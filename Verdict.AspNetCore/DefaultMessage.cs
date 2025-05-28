@@ -7,6 +7,7 @@ public static class DefaultMessage
     public const string Unauthorized = "You must be authenticated to access this resource.";
     public const string Forbidden = "You do not have permission to access this resource.";
     public const string UnprocessableEntity = "Your request was understood but contains data that cannot be processed.";
+    public const string Conflict = "A resource with the same identifier already exists, causing a conflict.";
 
     public const string InternalServerError =
         "The server encountered an error while processing your request. Please contact support if the problem persists.";
