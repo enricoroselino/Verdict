@@ -1,4 +1,4 @@
-namespace Verdict.Web;
+namespace Verdict.Web.Shared;
 
 public static class WebMetadata
 {

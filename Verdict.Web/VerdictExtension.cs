@@ -1,3 +1,5 @@
+using Verdict.Web.Shared;
+
 namespace Verdict.Web;
 
 public static class VerdictExtension
