@@ -12,6 +12,7 @@
         <Description>Simple C# result pattern inspired from altmann/FluentResults and ardalis/Result</Description>
         <RepositoryUrl>https://github.com/nebx-id/Verdict</RepositoryUrl>
         <License>https://github.com/nebx-id/Verdict/blob/main/LICENSE</License>
+        <RepositoryType>git</RepositoryType>
     </PropertyGroup>
 
 </Project>
