@@ -2,7 +2,7 @@
 Microsoft Visual Studio Solution File, Format Version 12.00
 Project("{FAE04EC0-301F-11D3-BF4B-00C04F79EFBC}") = "Verdict", "Verdict\Verdict.csproj", "{2B10F0B3-4F55-4D8F-B396-5F9588E5185E}"
 EndProject
-Project("{FAE04EC0-301F-11D3-BF4B-00C04F79EFBC}") = "Verdict.AspNetCore", "Verdict.AspNetCore\Verdict.AspNetCore.csproj", "{751EB18D-C2EA-44A2-82ED-43A740329896}"
+Project("{FAE04EC0-301F-11D3-BF4B-00C04F79EFBC}") = "Verdict.Web", "Verdict.Web\Verdict.Web.csproj", "{EBF4CC1E-9698-4D59-93DD-94611A93D5D4}"
 EndProject
 Global
 	GlobalSection(SolutionConfigurationPlatforms) = preSolution
@@ -14,9 +14,9 @@ Global
 		{2B10F0B3-4F55-4D8F-B396-5F9588E5185E}.Debug|Any CPU.Build.0 = Debug|Any CPU
 		{2B10F0B3-4F55-4D8F-B396-5F9588E5185E}.Release|Any CPU.ActiveCfg = Release|Any CPU
 		{2B10F0B3-4F55-4D8F-B396-5F9588E5185E}.Release|Any CPU.Build.0 = Release|Any CPU
-		{751EB18D-C2EA-44A2-82ED-43A740329896}.Debug|Any CPU.ActiveCfg = Debug|Any CPU
-		{751EB18D-C2EA-44A2-82ED-43A740329896}.Debug|Any CPU.Build.0 = Debug|Any CPU
-		{751EB18D-C2EA-44A2-82ED-43A740329896}.Release|Any CPU.ActiveCfg = Release|Any CPU
-		{751EB18D-C2EA-44A2-82ED-43A740329896}.Release|Any CPU.Build.0 = Release|Any CPU
+		{EBF4CC1E-9698-4D59-93DD-94611A93D5D4}.Debug|Any CPU.ActiveCfg = Debug|Any CPU
+		{EBF4CC1E-9698-4D59-93DD-94611A93D5D4}.Debug|Any CPU.Build.0 = Debug|Any CPU
+		{EBF4CC1E-9698-4D59-93DD-94611A93D5D4}.Release|Any CPU.ActiveCfg = Release|Any CPU
+		{EBF4CC1E-9698-4D59-93DD-94611A93D5D4}.Release|Any CPU.Build.0 = Release|Any CPU
 	EndGlobalSection
 EndGlobal

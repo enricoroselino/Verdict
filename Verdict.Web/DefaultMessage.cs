@@ -1,4 +1,4 @@
-namespace Verdict.AspNetCore;
+namespace Verdict.Web;
 
 public static class DefaultMessage
 {

@@ -5,8 +5,8 @@
         <ImplicitUsings>enable</ImplicitUsings>
         <Nullable>enable</Nullable>
         <GeneratePackageOnBuild>true</GeneratePackageOnBuild>
-        <PackageId>Nebx.Verdict.AspNetCore</PackageId>
-        <Title>Nebx.Verdict.AspNetCore</Title>
+        <PackageId>Nebx.Verdict.Web</PackageId>
+        <Title>Nebx.Verdict.Web</Title>
         <Authors>Enrico Roselino</Authors>
         <PackageProjectUrl>https://github.com/nebx-id/Verdict</PackageProjectUrl>
         <Description>Simple C# result pattern inspired from altmann/FluentResults and ardalis/Result</Description>
@@ -14,9 +14,9 @@
         <License>https://github.com/nebx-id/Verdict/blob/main/LICENSE</License>
         <RepositoryType>git</RepositoryType>
     </PropertyGroup>
-    
+
     <ItemGroup>
-        <ProjectReference Include="..\Verdict\Verdict.csproj"/>
+      <ProjectReference Include="..\Verdict\Verdict.csproj" />
     </ItemGroup>
 
 </Project>
