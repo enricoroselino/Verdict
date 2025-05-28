@@ -1,5 +1,3 @@
-using Microsoft.AspNetCore.Http;
-
 namespace Verdict.AspNetCore;
 
 public static class VerdictExtension
@@ -51,7 +49,7 @@ public static class VerdictExtension
     public static Verdict Unauthorized(this Verdict verdict, string errorCode)
     {
         return verdict.Unauthorized()
-            .WithReason(r => r.AddMetadata(WebMetadata.StatusCode, errorCode));
+            .WithReason(r => r.AddMetadata(WebMetadata.ErrorCode, errorCode));
     }
 
     public static Verdict Forbidden(this Verdict verdict)
