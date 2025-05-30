@@ -5,10 +5,10 @@ namespace Verdict.Web;
 
 public static class VerdictWebContextHelper
 {
-    public static Meta? GetMeta(this IVerdictContext context)
+    public static Meta? GetResponseMeta(this IVerdictContext context)
     {
         var metadata = context.Metadata;
-        var meta = metadata.TryGetValue(WebMetadataConstant.Meta, out var metaObj) && metaObj is Meta castedMeta
+        var meta = metadata.TryGetValue(WebMetadataConstant.ResponseMeta, out var metaObj) && metaObj is Meta castedMeta
             ? castedMeta
             : null;
 

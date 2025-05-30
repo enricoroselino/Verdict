@@ -18,7 +18,7 @@ public static class VerdictExtension
         var context = verdict.GetContext();
 
         var statusCode = context.GetStatusCode();
-        var meta = context.GetMeta();
+        var meta = context.GetResponseMeta();
         var payload = verdict.GetValue();
 
         var response = Response.Success(payload, meta, statusCode);

@@ -8,7 +8,7 @@ public static class VerdictStatusHelper
     public static Verdict<T> Ok<T>(this Verdict<T> verdict, Meta? meta = null)
     {
         verdict.WithContext(r => r.AddMetadata(WebMetadataConstant.StatusCode, StatusCodes.Ok));
-        if (meta is not null) verdict.WithContext(r => r.AddMetadata(WebMetadataConstant.Meta, meta));
+        if (meta is not null) verdict.WithContext(r => r.AddMetadata(WebMetadataConstant.ResponseMeta, meta));
         return verdict;
     }
 
