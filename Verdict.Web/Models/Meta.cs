@@ -1,6 +1,4 @@
-﻿using System.Text.Json.Serialization;
-
-namespace Verdict.Web.Models;
+﻿namespace Verdict.Web.Models;
 
 public class Meta
 {
@@ -8,15 +6,12 @@ public class Meta
     {
     }
 
-    [JsonPropertyOrder(1)] public int? Page { get; private set; }
-    [JsonPropertyOrder(2)] public int? TotalPages { get; private set; }
-    [JsonPropertyOrder(3)] public int? TotalCount { get; private set; }
-
-    [JsonPropertyOrder(4)]
+    public int? Page { get; private set; }
+    public int? TotalPages { get; private set; }
+    public int? TotalCount { get; private set; }
     public bool? HasNextPage => Page.HasValue && PageSize.HasValue ? Page * PageSize < TotalCount : null;
-
-    [JsonPropertyOrder(5)] public bool? HasPreviousPage => Page.HasValue && PageSize.HasValue ? Page > 1 : null;
-    [JsonPropertyOrder(6)] public int? PageSize { get; private set; }
+    public bool? HasPreviousPage => Page.HasValue && PageSize.HasValue ? Page > 1 : null;
+    public int? PageSize { get; private set; }
 
     internal void AddPagination(Pagination pagination, int totalCount)
     {
