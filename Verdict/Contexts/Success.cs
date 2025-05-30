@@ -1,4 +1,4 @@
-namespace Verdict.State;
+namespace Verdict.Contexts;
 
 internal class Success : VerdictContext
 {
