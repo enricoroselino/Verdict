@@ -1,10 +1,12 @@
-﻿using Verdict.Web.Models;
+﻿using Verdict.Web.Constants;
+using Verdict.Web.Models;
 
 namespace Verdict.Web;
 
 [Serializable]
 public class Response
 {
+    public string? Location { get; private set; }
     public int StatusCode { get; private init; }
     public Error? Error { get; init; }
 
@@ -18,6 +20,9 @@ public class Response
         meta is null
             ? new Response<TData>(data) { StatusCode = statusCode }
             : new Response<TData>(data, meta) { StatusCode = statusCode };
+
+    public static Response<TData> Success<TData>(TData data, string? location) =>
+        new Response<TData>(data) { Location = location, StatusCode = (int)StatusCodes.Created };
 
     public static Response Failed(Error error, int statusCode) =>
         new Response(error) { StatusCode = statusCode };

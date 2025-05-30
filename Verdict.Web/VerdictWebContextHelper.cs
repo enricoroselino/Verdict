@@ -39,4 +39,14 @@ public static class VerdictWebContextHelper
 
         return errors;
     }
+
+    public static string? GetLocation(this IVerdictContext context)
+    {
+        var metadata = context.Metadata;
+        var errorCode = metadata.TryGetValue(WebMetadataConstant.Location, out var locationObj)
+            ? locationObj as string
+            : null;
+
+        return errorCode;
+    }
 }

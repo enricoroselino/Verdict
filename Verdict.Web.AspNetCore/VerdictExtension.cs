@@ -18,10 +18,14 @@ public static class VerdictExtension
         var context = verdict.GetContext();
 
         var statusCode = context.GetStatusCode();
+        var location = context.GetLocation();
         var meta = context.GetResponseMeta();
         var payload = verdict.GetValue();
 
-        var response = Response.Success(payload, meta, statusCode);
+        var response = statusCode is StatusCodes.Status201Created
+            ? Response.Success(payload, location)
+            : Response.Success(payload, meta, statusCode);
+
         return response.ToResult();
     }
 
