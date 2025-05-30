@@ -9,6 +9,9 @@ public static class VerdictExtension
 {
     public static IResult ToResult(this IVerdict verdict)
     {
+        if (!verdict.GetContext().Metadata.Any())
+            throw new InvalidOperationException("Please set web context to verdict context");
+
         return verdict.IsSuccess ? ToSuccess(verdict) : ToError(verdict);
     }
 
