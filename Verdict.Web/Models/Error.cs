@@ -1,13 +1,11 @@
-﻿using System.Text.Json.Serialization;
-
-namespace Verdict.Web.Models;
+﻿namespace Verdict.Web.Models;
 
 [Serializable]
 public class Error
 {
-    [JsonPropertyOrder(2)] public string Message { get; protected set; } = string.Empty;
-    [JsonPropertyOrder(3)] public string? ErrorCode { get; protected set; }
-    [JsonPropertyOrder(4)] public Dictionary<string, string>? ValidationErrors { get; protected set; }
+    public string Message { get; protected set; } = string.Empty;
+    public string? Code { get; protected set; }
+    public Dictionary<string, string>? Validation { get; protected set; }
 
     private Error()
     {
@@ -21,6 +19,6 @@ public class Error
         };
     }
 
-    public void AddErrorCode(string errorCode) => ErrorCode = errorCode;
-    public void AddValidationErrors(Dictionary<string, string> errors) => ValidationErrors = errors;
+    public void AddErrorCode(string errorCode) => Code = errorCode;
+    public void AddValidationErrors(Dictionary<string, string> errors) => Validation = errors;
 }

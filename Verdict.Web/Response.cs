@@ -2,18 +2,24 @@
 
 namespace Verdict.Web;
 
-public abstract class Response
+public class Response
 {
     public int StatusCode { get; private init; }
     public Error? Error { get; init; }
 
-    public static Response<TData> Build<TData>(TData data, Meta? meta = null, int statusCode = 200) =>
+    protected Response()
+    {
+    }
+
+    private Response(Error error) => Error = error;
+
+    public static Response<TData> Success<TData>(TData data, int statusCode = 200, Meta? meta = null) =>
         meta is null
             ? new Response<TData>(data) { StatusCode = statusCode }
             : new Response<TData>(data, meta) { StatusCode = statusCode };
 
-    public static Response<TData> Build<TData>(Error error, int statusCode = 200) =>
-        new Response<TData>(error) { StatusCode = statusCode };
+    public static Response Failed(Error error, int statusCode) =>
+        new Response(error) { StatusCode = statusCode };
 }
 
 [Serializable]
@@ -26,7 +32,6 @@ public class Response<TData> : Response
     }
 
     internal Response(TData? data) => Data = data;
-    internal Response(Error error) => Error = error;
 
     public TData? Data { get; init; }
     public Meta? Meta { get; init; }
