@@ -1,6 +1,6 @@
 namespace Verdict.State;
 
-public class Failure : VerdictContext
+internal class Failure : VerdictContext
 {
     public Failure() : base()
     {
