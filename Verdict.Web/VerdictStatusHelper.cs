@@ -2,7 +2,7 @@ using Verdict.Web.Constants;
 
 namespace Verdict.Web;
 
-public static class VerdictExtension
+public static class VerdictStatusHelper
 {
     public static Verdict<T> Ok<T>(this Verdict<T> verdict)
     {
