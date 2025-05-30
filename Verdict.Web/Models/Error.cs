@@ -19,15 +19,7 @@ public class Error
         };
     }
 
-    public Error AddErrorCode(string errorCode)
-    {
-        Code = errorCode;
-        return this;
-    }
+    public void AddErrorCode(string errorCode) => Code = errorCode;
 
-    public Error AddValidationErrors(Dictionary<string, string> errors)
-    {
-        Validation = errors;
-        return this;
-    }
+    public void AddValidationErrors(Dictionary<string, string> errors) => Validation = errors;
 }

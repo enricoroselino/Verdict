@@ -15,7 +15,7 @@ public static class VerdictExtension
     private static IResult ToSuccess(IVerdict verdict)
     {
         var metadata = verdict.GetContext().Metadata;
-        
+
         var statusCode = (int)(StatusCodes)metadata[ContextConstant.StatusCode];
         var meta = metadata.TryGetValue(ContextConstant.Meta, out var metaObj) && metaObj is Meta castedMeta
             ? castedMeta
@@ -29,13 +29,16 @@ public static class VerdictExtension
     {
         var metadata = verdict.GetContext().Metadata;
         var context = verdict.GetContext();
-        
-        var statusCode = (int)(StatusCodes)metadata[ContextConstant.StatusCode];
-        var message = context.Message;
-        var errors = verdict.GetContext().Errors;
 
-        var error = Error.Create(message)
-            .AddValidationErrors(errors);
+        var statusCode = (int)(StatusCodes)metadata[ContextConstant.StatusCode];
+        var validationErrors = context.Errors;
+        var errorCode = metadata.TryGetValue(ContextConstant.ErrorCode, out var errorObj)
+            ? errorObj as string
+            : null;
+
+        var error = Error.Create(context.Message);
+        if (validationErrors.Count > 0) error.AddValidationErrors(validationErrors);
+        if (errorCode is not null) error.AddErrorCode(errorCode);
 
         var response = Response.Failed(error, statusCode);
         return response.ToResult();
