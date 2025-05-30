@@ -12,11 +12,11 @@ public static class VerdictStatusHelper
         return verdict;
     }
 
-    public static Verdict<T> Created<T>(this Verdict<T> verdict, string location = "")
+    public static Verdict<T> Created<T>(this Verdict<T> verdict, string? location = null)
     {
-        return verdict.WithContext(r =>
-            r.AddMetadata(WebMetadataConstant.StatusCode, StatusCodes.Created)
-                .AddMetadata(WebMetadataConstant.Location, location));
+        verdict.WithContext(r => r.AddMetadata(WebMetadataConstant.StatusCode, StatusCodes.Created));
+        if (location is not null) verdict.WithContext(r => r.AddMetadata(WebMetadataConstant.Location, location));
+        return verdict;
     }
 
     public static Verdict NoContent(this Verdict verdict)
