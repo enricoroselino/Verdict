@@ -3,7 +3,6 @@ using Verdict.Web.Models;
 
 namespace Verdict.Web;
 
-[Serializable]
 public class Response
 {
     public string? Location { get; private set; }
@@ -28,7 +27,6 @@ public class Response
         new Response(error) { StatusCode = statusCode };
 }
 
-[Serializable]
 public class Response<TData> : Response
 {
     internal Response(TData? data, Meta meta)
