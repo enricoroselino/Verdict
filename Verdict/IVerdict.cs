@@ -3,7 +3,7 @@ namespace Verdict;
 public interface IVerdict
 {
     public object? GetValue();
-    public IReason GetReason();
+    public IVerdictContext GetContext();
     public bool IsSuccess { get; }
     public bool IsFailure { get; }
 }

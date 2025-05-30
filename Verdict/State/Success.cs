@@ -1,6 +1,6 @@
 namespace Verdict.State;
 
-public class Success : Reason
+public class Success : VerdictContext
 {
     public Success() : base()
     {

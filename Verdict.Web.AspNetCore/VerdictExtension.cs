@@ -14,9 +14,9 @@ public static class VerdictExtension
 
     private static IResult ToSuccess(IVerdict verdict)
     {
-        var metadata = verdict.GetReason().Metadata;
-        var statusCode = (int)(StatusCodes)metadata[ReasonContext.StatusCode];
-        var meta = metadata.TryGetValue(ReasonContext.Meta, out var metaObj) && metaObj is Meta castedMeta
+        var metadata = verdict.GetContext().Metadata;
+        var statusCode = (int)(StatusCodes)metadata[ContextConstant.StatusCode];
+        var meta = metadata.TryGetValue(ContextConstant.Meta, out var metaObj) && metaObj is Meta castedMeta
             ? castedMeta
             : null;
 
@@ -27,8 +27,8 @@ public static class VerdictExtension
     private static IResult ToError(IVerdict verdict)
     {
         //TODO: add validation error
-        var statusCode = (int)(StatusCodes)verdict.GetReason().Metadata[ReasonContext.StatusCode];
-        var message = verdict.GetReason().Message;
+        var statusCode = (int)(StatusCodes)verdict.GetContext().Metadata[ContextConstant.StatusCode];
+        var message = verdict.GetContext().Message;
 
         var error = Error.Create(message);
         var response = Response.Failed(error, statusCode);

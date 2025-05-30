@@ -1,6 +1,6 @@
 namespace Verdict;
 
-public interface IReason
+public interface IVerdictContext
 {
     public Dictionary<string, object> Metadata { get; }
     public Dictionary<string, string> Errors { get; }

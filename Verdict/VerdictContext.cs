@@ -1,23 +1,23 @@
 namespace Verdict;
 
-public abstract class Reason : IReason
+public abstract class VerdictContext : IVerdictContext
 {
     public Dictionary<string, object> Metadata { get; }
     public Dictionary<string, string> Errors { get; }
     public string Message { get; private set; } = string.Empty;
 
-    protected Reason()
+    protected VerdictContext()
     {
         Metadata = new Dictionary<string, object>(StringComparer.InvariantCultureIgnoreCase);
         Errors = new Dictionary<string, string>(StringComparer.InvariantCultureIgnoreCase);
     }
 
-    protected Reason(string message) : this()
+    protected VerdictContext(string message) : this()
     {
         Message = message;
     }
     
-    public Reason AddError(Dictionary<string, string> errors)
+    public VerdictContext AddError(Dictionary<string, string> errors)
     {
         foreach (var kvp in errors)
         {
@@ -27,13 +27,13 @@ public abstract class Reason : IReason
         return this;
     }
 
-    public Reason AddMetadata(string key, object value)
+    public VerdictContext AddMetadata(string key, object value)
     {
         Metadata[key] = value; // Overwrites if exists
         return this;
     }
 
-    public Reason AddMetadata(Dictionary<string, object> metadata)
+    public VerdictContext AddMetadata(Dictionary<string, object> metadata)
     {
         foreach (var kvp in metadata)
         {
@@ -43,7 +43,7 @@ public abstract class Reason : IReason
         return this;
     }
 
-    public Reason SetMessage(string message)
+    public VerdictContext SetMessage(string message)
     {
         if (!string.IsNullOrWhiteSpace(Message)) return this;
 
