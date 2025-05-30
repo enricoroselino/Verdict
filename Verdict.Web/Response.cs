@@ -2,6 +2,7 @@
 
 namespace Verdict.Web;
 
+[Serializable]
 public class Response
 {
     public int StatusCode { get; private init; }
