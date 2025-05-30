@@ -27,17 +27,17 @@ public abstract class VerdictContext : IVerdictContext
         return this;
     }
 
-    public VerdictContext AddMetadata(string key, object value)
+    public VerdictContext AddContext(string key, object value)
     {
         Metadata[key] = value; // Overwrites if exists
         return this;
     }
 
-    public VerdictContext AddMetadata(Dictionary<string, object> metadata)
+    public VerdictContext AddContext(Dictionary<string, object> metadata)
     {
         foreach (var kvp in metadata)
         {
-            AddMetadata(kvp.Key, kvp.Value);
+            AddContext(kvp.Key, kvp.Value);
         }
 
         return this;
