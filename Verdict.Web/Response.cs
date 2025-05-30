@@ -13,7 +13,7 @@ public class Response
 
     private Response(Error error) => Error = error;
 
-    public static Response<TData> Success<TData>(TData data, int statusCode = 200, Meta? meta = null) =>
+    public static Response<TData> Success<TData>(TData data, Meta? meta = null, int statusCode = 200) =>
         meta is null
             ? new Response<TData>(data) { StatusCode = statusCode }
             : new Response<TData>(data, meta) { StatusCode = statusCode };

@@ -14,16 +14,20 @@ public static class VerdictExtension
 
     private static IResult ToSuccess(IVerdict verdict)
     {
-        //TODO: check if any location in created
-        var statusCode = (int)(StatusCodes)verdict.GetReason().Metadata[WebMetadata.StatusCode];
-        var response = Response.Success(verdict.GetValue(), statusCode: statusCode);
+        var metadata = verdict.GetReason().Metadata;
+        var statusCode = (int)(StatusCodes)metadata[ReasonContext.StatusCode];
+        var meta = metadata.TryGetValue(ReasonContext.Meta, out var metaObj) && metaObj is Meta castedMeta
+            ? castedMeta
+            : null;
+
+        var response = Response.Success(verdict.GetValue(), meta, statusCode);
         return response.ToResult();
     }
 
     private static IResult ToError(IVerdict verdict)
     {
         //TODO: add validation error
-        var statusCode = (int)(StatusCodes)verdict.GetReason().Metadata[WebMetadata.StatusCode];
+        var statusCode = (int)(StatusCodes)verdict.GetReason().Metadata[ReasonContext.StatusCode];
         var message = verdict.GetReason().Message;
 
         var error = Error.Create(message);

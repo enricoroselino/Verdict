@@ -2,7 +2,7 @@
 
 public class Meta
 {
-    internal Meta()
+    public Meta()
     {
     }
 
@@ -13,7 +13,7 @@ public class Meta
     public bool? HasPreviousPage => Page.HasValue && PageSize.HasValue ? Page > 1 : null;
     public int? PageSize { get; private set; }
 
-    internal void AddPagination(Pagination pagination, int totalCount)
+    public void AddPagination(Pagination pagination, int totalCount)
     {
         var totalPages = (int)Math.Ceiling(totalCount / (double)pagination.PageSize);
         var isPageInvalid = pagination.Page > 1 && pagination.Page > totalPages;
