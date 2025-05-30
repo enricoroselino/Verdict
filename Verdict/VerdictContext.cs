@@ -17,7 +17,7 @@ public abstract class VerdictContext : IVerdictContext
         Message = message;
     }
     
-    public VerdictContext AddError(Dictionary<string, string> errors)
+    public VerdictContext AddErrors(Dictionary<string, string> errors)
     {
         foreach (var kvp in errors)
         {

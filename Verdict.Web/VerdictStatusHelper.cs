@@ -38,7 +38,7 @@ public static class VerdictStatusHelper
     public static Verdict BadRequest(this Verdict verdict, Dictionary<string, string> errors)
     {
         return verdict.BadRequest()
-            .WithContext(r => r.AddError(errors));
+            .WithContext(r => r.AddErrors(errors));
     }
 
     public static Verdict Unauthorized(this Verdict verdict)
