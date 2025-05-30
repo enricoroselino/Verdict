@@ -21,16 +21,6 @@ public abstract class VerdictContext : IVerdictContext
         return this;
     }
 
-    public VerdictContext AddMetadata(Dictionary<string, object> metadata)
-    {
-        foreach (var kvp in metadata)
-        {
-            AddMetadata(kvp.Key, kvp.Value);
-        }
-
-        return this;
-    }
-
     public VerdictContext SetMessage(string message)
     {
         if (!string.IsNullOrWhiteSpace(Message)) return this;
