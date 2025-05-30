@@ -7,12 +7,12 @@ public abstract class Response
     public int StatusCode { get; private init; }
     public Error? Error { get; init; }
 
-    public static Response<TData> Build<TData>(int statusCode, TData data, Meta? meta = null) =>
+    public static Response<TData> Build<TData>(TData data, Meta? meta = null, int statusCode = 200) =>
         meta is null
             ? new Response<TData>(data) { StatusCode = statusCode }
             : new Response<TData>(data, meta) { StatusCode = statusCode };
 
-    public static Response<TData> Build<TData>(int statusCode, Error error) =>
+    public static Response<TData> Build<TData>(Error error, int statusCode = 200) =>
         new Response<TData>(error) { StatusCode = statusCode };
 }
 
