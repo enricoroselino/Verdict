@@ -74,6 +74,8 @@ public class Verdict<T> : IVerdict
 
     public Verdict<T> SetMessage(string message)
     {
+        if (!string.IsNullOrWhiteSpace(Message)) return this;
+        
         Message = message;
         return this;
     }
