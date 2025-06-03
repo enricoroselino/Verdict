@@ -30,7 +30,7 @@ public static class VerdictToResultExtension
     {
         return verdictSuccessType switch
         {
-            VerdictSuccessType.Ok => Results.Ok(verdict.GetValue()),
+            VerdictSuccessType.Ok => verdict is Verdict ? Results.Ok() : Results.Ok(verdict.GetValue()),
             VerdictSuccessType.NoContent => Results.NoContent(),
             VerdictSuccessType.Created => Results.Created("", verdict.GetValue()),
             _ => throw new ArgumentOutOfRangeException(nameof(verdictSuccessType), verdictSuccessType, null)
