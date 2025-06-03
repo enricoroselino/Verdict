@@ -1,6 +1,6 @@
-namespace Verdict.Web.Constants;
+namespace Nebx.Verdict.AspNetCore.Constants;
 
-public static class DefaultMessage
+public static class VerdictHttpMessage
 {
     public const string NotFound = "The requested resource could not be found.";
     public const string BadRequest = "Your request could not be processed due to invalid or missing data.";
