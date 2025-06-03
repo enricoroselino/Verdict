@@ -6,13 +6,14 @@
         <Nullable>enable</Nullable>
         <GeneratePackageOnBuild>true</GeneratePackageOnBuild>
         <PackageId>Nebx.Verdict.AspNetCore</PackageId>
-        <Title>Verdict.AspNetCore</Title>
+        <Title>Nebx.Verdict.AspNetCore</Title>
         <Authors>Enrico Roselino</Authors>
         <PackageProjectUrl>https://github.com/nebx-id/Verdict</PackageProjectUrl>
         <Description>Yet another result pattern inspired from altmann/FluentResults and ardalis/Result</Description>
         <RepositoryUrl>https://github.com/nebx-id/Verdict</RepositoryUrl>
         <License>https://github.com/nebx-id/Verdict/blob/main/LICENSE</License>
         <RepositoryType>git</RepositoryType>
+        <Version>0.1.0</Version>
     </PropertyGroup>
 
     <ItemGroup>
