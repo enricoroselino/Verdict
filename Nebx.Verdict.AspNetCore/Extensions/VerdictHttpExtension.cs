@@ -19,8 +19,8 @@ public static class VerdictHttpExtension
             .SetMessage(message);
     }
 
-    private static Nebx.Verdict.Verdict SetHttpError(
-        this Nebx.Verdict.Verdict verdict,
+    private static Verdict SetHttpError(
+        this Verdict verdict,
         int statusCode,
         string message,
         IReadOnlyDictionary<string, string>? errors = null)
@@ -39,7 +39,7 @@ public static class VerdictHttpExtension
         return verdict;
     }
 
-    public static Nebx.Verdict.Verdict NotFound(this Nebx.Verdict.Verdict verdict)
+    public static Verdict NotFound(this Nebx.Verdict.Verdict verdict)
     {
         verdict.SetHttpError(StatusCodes.Status404NotFound, VerdictHttpMessage.NotFound);
         return verdict;
