@@ -48,7 +48,7 @@ public static class VerdictToResultExtension
         var response = ErrorDto.Create(verdict.Message, statusCode, path, requestId);
 
         var errors = verdict.GetErrors();
-        if (errors != null) response.AddErrors(errors);
+        if (errors is not null) response.AddErrors(errors);
 
         return Results.Json(response, options: SerializerOptions, statusCode: response.StatusCode);
     }
