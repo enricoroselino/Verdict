@@ -1,4 +1,5 @@
 using Api;
+using Nebx.Verdict.AspNetCore;
 using Nebx.Verdict.AspNetCore.Extensions;
 
 var builder = WebApplication.CreateBuilder(args);
@@ -7,6 +8,7 @@ var builder = WebApplication.CreateBuilder(args);
 // Learn more about configuring OpenAPI at https://aka.ms/aspnet/openapi
 builder.Services.AddOpenApi();
 builder.Services.AddHttpContextAccessor();
+builder.Services.AddScoped<IWeatherRepository, WeatherRepository>();
 
 var app = builder.Build();
 
@@ -19,10 +21,9 @@ if (app.Environment.IsDevelopment())
 app.UseHttpsRedirection();
 
 
-app.MapGet("/weatherforecast", (IHttpContextAccessor accessor) =>
+app.MapGet("/weatherforecast", (IHttpContextAccessor accessor, IWeatherRepository weatherRepository) =>
     {
-        var repo = new WeatherRepository();
-        var forecastResult = repo.GetWeatherForecast();
+        var forecastResult = weatherRepository.GetWeatherForecast();
         return forecastResult.ToMinimalApiResult(accessor);
     })
     .WithName("GetWeatherForecast");

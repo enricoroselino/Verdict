@@ -16,6 +16,8 @@ public static class VerdictToResultExtension
         PropertyNamingPolicy = JsonNamingPolicy.CamelCase,
     };
 
+    private const string ContentType = "application/json";
+
     public static IResult ToMinimalApiResult(
         this IVerdict verdict,
         IHttpContextAccessor accessor,
@@ -30,7 +32,13 @@ public static class VerdictToResultExtension
     {
         return verdictSuccessType switch
         {
-            VerdictSuccessType.Ok => verdict is Verdict ? Results.Ok() : Results.Ok(verdict.GetValue()),
+            VerdictSuccessType.Ok => verdict is Verdict
+                ? Results.Ok()
+                : Results.Json(
+                    verdict.GetValue(),
+                    options: SerializerOptions,
+                    contentType: ContentType,
+                    statusCode: 200),
             VerdictSuccessType.NoContent => Results.NoContent(),
             VerdictSuccessType.Created => Results.Created("", verdict.GetValue()),
             _ => throw new ArgumentOutOfRangeException(nameof(verdictSuccessType), verdictSuccessType, null)
@@ -50,6 +58,10 @@ public static class VerdictToResultExtension
         var errors = verdict.GetErrors();
         if (errors is not null) response.AddErrors(errors);
 
-        return Results.Json(response, options: SerializerOptions, statusCode: response.StatusCode);
+        return Results.Json(
+            response,
+            options: SerializerOptions,
+            contentType: ContentType,
+            statusCode: response.StatusCode);
     }
 }
