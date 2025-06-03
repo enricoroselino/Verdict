@@ -18,8 +18,12 @@ public class Verdict<T> : IVerdict
 
     public static implicit operator Verdict<T>(Verdict verdict) => new Verdict<T>()
     {
-        Errors = verdict.Errors != null ? new Dictionary<string, string>(verdict.Errors) : null,
-        Metadata = verdict.Metadata != null ? new Dictionary<string, object>(verdict.Metadata) : null,
+        Errors = verdict.Errors != null
+            ? new Dictionary<string, string>(verdict.Errors, StringComparer.OrdinalIgnoreCase)
+            : null,
+        Metadata = verdict.Metadata != null
+            ? new Dictionary<string, object>(verdict.Metadata, StringComparer.OrdinalIgnoreCase)
+            : null,
         Message = verdict.Message,
         IsSuccess = verdict.IsSuccess,
         Value = default(T)!,
@@ -27,8 +31,12 @@ public class Verdict<T> : IVerdict
 
     public static implicit operator Verdict(Verdict<T> verdict) => new Verdict()
     {
-        Errors = verdict.Errors != null ? new Dictionary<string, string>(verdict.Errors) : null,
-        Metadata = verdict.Metadata != null ? new Dictionary<string, object>(verdict.Metadata) : null,
+        Errors = verdict.Errors != null
+            ? new Dictionary<string, string>(verdict.Errors, StringComparer.OrdinalIgnoreCase)
+            : null,
+        Metadata = verdict.Metadata != null
+            ? new Dictionary<string, object>(verdict.Metadata, StringComparer.OrdinalIgnoreCase)
+            : null,
         Message = verdict.Message,
         IsSuccess = verdict.IsSuccess,
     };
