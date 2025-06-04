@@ -1,5 +1,3 @@
-using System.Text.Json;
-using System.Text.Json.Serialization;
 using Microsoft.AspNetCore.Http;
 using Nebx.Verdict.AspNetCore.Constants;
 using Nebx.Verdict.AspNetCore.Models;
@@ -8,16 +6,6 @@ namespace Nebx.Verdict.AspNetCore.Extensions;
 
 public static class VerdictToResultExtension
 {
-    private static readonly JsonSerializerOptions SerializerOptions = new JsonSerializerOptions
-    {
-        WriteIndented = true,
-        PropertyNameCaseInsensitive = true,
-        DefaultIgnoreCondition = JsonIgnoreCondition.WhenWritingNull,
-        PropertyNamingPolicy = JsonNamingPolicy.CamelCase,
-    };
-
-    private const string ContentType = "application/json";
-
     public static IResult ToMinimalApiResult(
         this IVerdict verdict,
         IHttpContextAccessor accessor,
@@ -36,9 +24,9 @@ public static class VerdictToResultExtension
                 ? Results.Ok()
                 : Results.Json(
                     verdict.GetValue(),
-                    options: SerializerOptions,
-                    contentType: ContentType,
-                    statusCode: 200),
+                    options: VerdictSerializerOption.MinimalApi,
+                    contentType: VerdictContentType.Json,
+                    statusCode: StatusCodes.Status200OK),
             VerdictSuccessType.NoContent => Results.NoContent(),
             VerdictSuccessType.Created => Results.Created("", verdict.GetValue()),
             _ => throw new ArgumentOutOfRangeException(nameof(verdictSuccessType), verdictSuccessType, null)
@@ -60,8 +48,8 @@ public static class VerdictToResultExtension
 
         return Results.Json(
             response,
-            options: SerializerOptions,
-            contentType: ContentType,
+            options: VerdictSerializerOption.MinimalApi,
+            contentType: VerdictContentType.Json,
             statusCode: response.StatusCode);
     }
 }
