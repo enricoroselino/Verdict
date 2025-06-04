@@ -1,9 +1,18 @@
 ﻿<Project Sdk="Microsoft.NET.Sdk">
 
     <PropertyGroup>
-        <TargetFramework>net9.0</TargetFramework>
+        <TargetFramework>net6.0</TargetFramework>
         <ImplicitUsings>enable</ImplicitUsings>
         <Nullable>enable</Nullable>
+        <GeneratePackageOnBuild>true</GeneratePackageOnBuild>
+        <PackageId>Nebx.Verdict.AspNetCore</PackageId>
+        <Title>Nebx.Verdict.AspNetCore</Title>
+        <Authors>Enrico Roselino</Authors>
+        <PackageProjectUrl>https://github.com/nebx-id/Verdict</PackageProjectUrl>
+        <Description>Yet another result pattern inspired from altmann/FluentResults and ardalis/Result.</Description>
+        <RepositoryUrl>https://github.com/nebx-id/Verdict</RepositoryUrl>
+        <License>https://raw.githubusercontent.com/nebx-id/Verdict/refs/heads/main/LICENSE</License>
+        <RepositoryType>git</RepositoryType>
     </PropertyGroup>
 
     <ItemGroup>
