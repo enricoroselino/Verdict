@@ -6,30 +6,30 @@ namespace Nebx.Verdict.AspNetCore.Extensions;
 
 public static class VerdictToResultExtension
 {
-    public static IResult ToMinimalApiResult(
-        this IVerdict verdict,
-        IHttpContextAccessor accessor,
-        VerdictSuccessType verdictSuccessType = VerdictSuccessType.Ok)
+    public static IResult ToMinimalApiResult(this IVerdict verdict, IHttpContextAccessor accessor)
     {
         return verdict.IsSuccess
-            ? CreateSuccessResponse(verdict, verdictSuccessType)
+            ? CreateSuccessResponse(verdict)
             : CreateErrorResponse(verdict, accessor);
     }
 
-    private static IResult CreateSuccessResponse(IVerdict verdict, VerdictSuccessType verdictSuccessType)
+    private static IResult CreateSuccessResponse(IVerdict verdict)
     {
-        return verdictSuccessType switch
+        var metadata = verdict.GetMetadata() ?? throw new InvalidOperationException("Metadata is null");
+        var statusCode = (HttpStatusCodes)metadata[HttpKeys.StatusCode];
+
+        return statusCode switch
         {
-            VerdictSuccessType.Ok => verdict is Verdict
+            HttpStatusCodes.Success => verdict is Verdict
                 ? Results.Ok()
                 : Results.Json(
                     verdict.GetValue(),
-                    options: VerdictSerializerOption.MinimalApi,
-                    contentType: VerdictContentType.Json,
-                    statusCode: StatusCodes.Status200OK),
-            VerdictSuccessType.NoContent => Results.NoContent(),
-            VerdictSuccessType.Created => Results.Created("", verdict.GetValue()),
-            _ => throw new ArgumentOutOfRangeException(nameof(verdictSuccessType), verdictSuccessType, null)
+                    options: SerializerOptions.MinimalApi,
+                    contentType: HttpContentTypes.Json,
+                    statusCode: (int)HttpStatusCodes.Success),
+            HttpStatusCodes.NoContent => Results.NoContent(),
+            HttpStatusCodes.Created => Results.Created("", verdict.GetValue()),
+            _ => throw new ArgumentOutOfRangeException(nameof(statusCode), statusCode, null)
         };
     }
 
@@ -37,19 +37,19 @@ public static class VerdictToResultExtension
     {
         var metadata = verdict.GetMetadata() ?? throw new InvalidOperationException("Metadata is null");
         var context = accessor.HttpContext ?? throw new InvalidOperationException("Http context is null");
-        var statusCode = (int)metadata[VerdictHttpKey.StatusCode];
+        var statusCode = (HttpStatusCodes)metadata[HttpKeys.StatusCode];
 
         var path = context.Request.Path;
         var requestId = context.TraceIdentifier;
-        var response = ErrorDto.Create(verdict.Message, statusCode, path, requestId);
+        var response = ErrorDto.Create(verdict.Message, (int)statusCode, path, requestId);
 
         var errors = verdict.GetErrors();
         if (errors is not null) response.AddErrors(errors);
 
         return Results.Json(
             response,
-            options: VerdictSerializerOption.MinimalApi,
-            contentType: VerdictContentType.Json,
+            options: SerializerOptions.MinimalApi,
+            contentType: HttpContentTypes.Json,
             statusCode: response.StatusCode);
     }
 }
