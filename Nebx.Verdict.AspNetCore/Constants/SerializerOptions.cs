@@ -3,7 +3,7 @@ using System.Text.Json.Serialization;
 
 namespace Nebx.Verdict.AspNetCore.Constants;
 
-public static class VerdictSerializerOption
+public static class SerializerOptions
 {
     public static readonly JsonSerializerOptions MinimalApi = new JsonSerializerOptions
     {
