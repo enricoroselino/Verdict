@@ -1,4 +1,3 @@
-using Microsoft.AspNetCore.Http;
 using Nebx.Verdict.AspNetCore.Constants;
 
 namespace Nebx.Verdict.AspNetCore.Extensions;
@@ -11,7 +10,7 @@ public static class VerdictHttpExtension
         string message,
         IReadOnlyDictionary<string, string>? errors = null)
     {
-        var metadata = new Dictionary<string, object> { [VerdictHttpKey.StatusCode] = statusCode };
+        var metadata = new Dictionary<string, object> { [HttpKeys.StatusCode] = statusCode };
         if (errors != null) verdict.WithErrors(errors);
 
         return verdict
@@ -25,7 +24,7 @@ public static class VerdictHttpExtension
         string message,
         IReadOnlyDictionary<string, string>? errors = null)
     {
-        var metadata = new Dictionary<string, object> { [VerdictHttpKey.StatusCode] = statusCode };
+        var metadata = new Dictionary<string, object> { [HttpKeys.StatusCode] = statusCode };
         if (errors != null) verdict.WithErrors(errors);
 
         return verdict
@@ -35,85 +34,85 @@ public static class VerdictHttpExtension
 
     public static Verdict<T> NotFound<T>(this Verdict<T> verdict)
     {
-        verdict.SetHttpError(StatusCodes.Status404NotFound, VerdictHttpMessage.NotFound);
+        verdict.SetHttpError((int)HttpStatusCodes.NotFound, DefaulHttpMessages.NotFound);
         return verdict;
     }
 
-    public static Verdict NotFound(this Nebx.Verdict.Verdict verdict)
+    public static Verdict NotFound(this Verdict verdict)
     {
-        verdict.SetHttpError(StatusCodes.Status404NotFound, VerdictHttpMessage.NotFound);
+        verdict.SetHttpError((int)HttpStatusCodes.NotFound, DefaulHttpMessages.NotFound);
         return verdict;
     }
 
     public static Verdict<T> BadRequest<T>(this Verdict<T> verdict, IReadOnlyDictionary<string, string>? errors = null)
     {
-        verdict.SetHttpError(StatusCodes.Status400BadRequest, VerdictHttpMessage.BadRequest, errors);
+        verdict.SetHttpError((int)HttpStatusCodes.BadRequest, DefaulHttpMessages.BadRequest, errors);
         return verdict;
     }
 
     public static Verdict BadRequest(this Verdict verdict, IReadOnlyDictionary<string, string>? errors = null)
     {
-        verdict.SetHttpError(StatusCodes.Status400BadRequest, VerdictHttpMessage.BadRequest, errors);
+        verdict.SetHttpError((int)HttpStatusCodes.BadRequest, DefaulHttpMessages.BadRequest, errors);
         return verdict;
     }
 
     public static Verdict<T> Forbidden<T>(this Verdict<T> verdict)
     {
-        verdict.SetHttpError(StatusCodes.Status403Forbidden, VerdictHttpMessage.Forbidden);
+        verdict.SetHttpError((int)HttpStatusCodes.Forbidden, DefaulHttpMessages.Forbidden);
         return verdict;
     }
 
     public static Verdict Forbidden(this Verdict verdict)
     {
-        verdict.SetHttpError(StatusCodes.Status403Forbidden, VerdictHttpMessage.Forbidden);
+        verdict.SetHttpError((int)HttpStatusCodes.Forbidden, DefaulHttpMessages.Forbidden);
         return verdict;
     }
 
     public static Verdict<T> Unauthorized<T>(this Verdict<T> verdict)
     {
-        verdict.SetHttpError(StatusCodes.Status401Unauthorized, VerdictHttpMessage.Unauthorized);
+        verdict.SetHttpError((int)HttpStatusCodes.Unauthorized, DefaulHttpMessages.Unauthorized);
         return verdict;
     }
 
     public static Verdict Unauthorized(this Verdict verdict)
     {
-        verdict.SetHttpError(StatusCodes.Status401Unauthorized, VerdictHttpMessage.Unauthorized);
+        verdict.SetHttpError((int)HttpStatusCodes.Unauthorized, DefaulHttpMessages.Unauthorized);
         return verdict;
     }
 
     public static Verdict<T> UnprocessableEntity<T>(this Verdict<T> verdict)
     {
-        verdict.SetHttpError(StatusCodes.Status422UnprocessableEntity, VerdictHttpMessage.UnprocessableEntity);
+        verdict.SetHttpError((int)HttpStatusCodes.UnprocessableEntity, DefaulHttpMessages.UnprocessableEntity);
         return verdict;
     }
 
     public static Verdict UnprocessableEntity(this Verdict verdict)
     {
-        verdict.SetHttpError(StatusCodes.Status422UnprocessableEntity, VerdictHttpMessage.UnprocessableEntity);
+        verdict.SetHttpError((int)HttpStatusCodes.UnprocessableEntity, DefaulHttpMessages.UnprocessableEntity);
         return verdict;
     }
 
     public static Verdict<T> Conflict<T>(this Verdict<T> verdict)
     {
-        verdict.SetHttpError(StatusCodes.Status409Conflict, VerdictHttpMessage.Conflict);
+        verdict.SetHttpError((int)HttpStatusCodes.Conflict, DefaulHttpMessages.Conflict);
         return verdict;
     }
 
     public static Verdict Conflict(this Verdict verdict)
     {
-        verdict.SetHttpError(StatusCodes.Status409Conflict, VerdictHttpMessage.Conflict);
+        verdict.SetHttpError((int)HttpStatusCodes.Conflict, DefaulHttpMessages.Conflict);
         return verdict;
     }
 
     public static Verdict<T> InternalError<T>(this Verdict<T> verdict)
     {
-        verdict.SetHttpError(StatusCodes.Status500InternalServerError, VerdictHttpMessage.InternalServerError);
+        verdict.SetHttpError((int)HttpStatusCodes.InternalServerError, DefaulHttpMessages.InternalServerError);
         return verdict;
     }
 
     public static Verdict InternalError(this Verdict verdict)
     {
-        verdict.SetHttpError(StatusCodes.Status500InternalServerError, VerdictHttpMessage.InternalServerError);
+        verdict.SetHttpError((int)HttpStatusCodes.InternalServerError, DefaulHttpMessages.InternalServerError);
         return verdict;
     }
 }
