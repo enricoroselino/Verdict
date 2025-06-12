@@ -24,10 +24,7 @@ app.UseHttpsRedirection();
 app.MapGet("/weatherforecast", (IHttpContextAccessor accessor, IWeatherRepository weatherRepository) =>
     {
         var forecastResult = weatherRepository.GetWeatherForecast();
-        if (!forecastResult.IsSuccess) return forecastResult.ToMinimalApiResult(accessor);
-
-        var response = SuccessDto.Create(forecastResult.Value);
-        return response.ToMinimalApiResult();
+        return forecastResult.ToMinimalApiResult(accessor);
     })
     .WithName("GetWeatherForecast");
 
