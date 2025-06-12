@@ -1,6 +1,6 @@
 ﻿namespace Nebx.Verdict.AspNetCore.Constants;
 
-public enum HttpStatusCodes
+internal enum HttpStatusCodes
 {
     InternalServerError = 500,
     BadRequest = 400,
