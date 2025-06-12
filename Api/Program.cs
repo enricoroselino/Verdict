@@ -1,6 +1,6 @@
 using Api;
-using Nebx.Verdict.AspNetCore;
 using Nebx.Verdict.AspNetCore.Extensions;
+using Nebx.Verdict.AspNetCore.Models;
 
 var builder = WebApplication.CreateBuilder(args);
 
@@ -24,7 +24,10 @@ app.UseHttpsRedirection();
 app.MapGet("/weatherforecast", (IHttpContextAccessor accessor, IWeatherRepository weatherRepository) =>
     {
         var forecastResult = weatherRepository.GetWeatherForecast();
-        return forecastResult.ToMinimalApiResult(accessor);
+        if (!forecastResult.IsSuccess) return forecastResult.ToMinimalApiResult(accessor);
+
+        var response = SuccessDto.Create(forecastResult.Value);
+        return response.ToMinimalApiResult();
     })
     .WithName("GetWeatherForecast");
 
