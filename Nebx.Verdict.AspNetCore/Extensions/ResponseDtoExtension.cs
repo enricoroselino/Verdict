@@ -7,7 +7,7 @@ namespace Nebx.Verdict.AspNetCore.Extensions;
 
 public static class ResponseDtoExtension
 {
-    public static IResult ToMinimalApiResult(this ResponseDto dto) =>
+    public static IResult ToMinimalApiResult<T>(this SuccessDto<T> dto) =>
         Results.Json(
             dto,
             options: SerializerOptions.MinimalApi,
