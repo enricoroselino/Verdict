@@ -20,13 +20,7 @@ public static class VerdictToResultExtension
 
         return statusCode switch
         {
-            HttpStatusCodes.Success => verdict is Verdict
-                ? Results.Ok()
-                : Results.Json(
-                    verdict.GetValue(),
-                    options: SerializerOptions.MinimalApi,
-                    contentType: HttpContentTypes.Json,
-                    statusCode: (int)HttpStatusCodes.Success),
+            HttpStatusCodes.Success => verdict is Verdict ? Results.Ok() : Results.Ok(verdict.GetValue()),
             HttpStatusCodes.NoContent => Results.NoContent(),
             HttpStatusCodes.Created => Results.Created("", verdict.GetValue()),
             _ => throw new ArgumentOutOfRangeException(nameof(statusCode), statusCode, null)
