@@ -88,13 +88,13 @@ public static class VerdictHttpExtension
         return verdict;
     }
 
-    public static Verdict<T> Success<T>(this Verdict<T> verdict)
+    public static Verdict<T> Ok<T>(this Verdict<T> verdict)
     {
         verdict.SetStatusCode(HttpStatusCodes.Success);
         return verdict;
     }
 
-    public static Verdict Success(this Verdict verdict)
+    public static Verdict Ok(this Verdict verdict)
     {
         verdict.SetStatusCode(HttpStatusCodes.Success);
         return verdict;
