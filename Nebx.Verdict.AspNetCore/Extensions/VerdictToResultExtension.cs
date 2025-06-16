@@ -40,10 +40,22 @@ public static class VerdictToResultExtension
         var errors = verdict.GetErrors();
         if (errors is not null) response.AddErrors(errors);
 
-        return Results.Json(
-            response,
-            options: SerializerOptions.MinimalApi,
-            contentType: HttpContentTypes.Json,
-            statusCode: response.StatusCode);
+        return statusCode switch
+        {
+            HttpStatusCodes.BadRequest => Results.BadRequest(response),
+            HttpStatusCodes.UnprocessableEntity => Results.UnprocessableEntity(response),
+            HttpStatusCodes.NotFound => Results.NotFound(response),
+            HttpStatusCodes.Conflict => Results.Conflict(response),
+            HttpStatusCodes.Forbidden => Results.Json(
+                response,
+                contentType: HttpContentTypes.Json,
+                statusCode: response.StatusCode),
+            HttpStatusCodes.Unauthorized => Results.Json(
+                response,
+                contentType: HttpContentTypes.Json,
+                statusCode: response.StatusCode),
+            HttpStatusCodes.InternalServerError => throw new Exception(response.Message),
+            _ => throw new ArgumentOutOfRangeException(nameof(statusCode), statusCode, null)
+        };
     }
 }
