@@ -1,6 +1,6 @@
 using Api;
-using Nebx.Verdict.AspNetCore;
 using Nebx.Verdict.AspNetCore.Extensions;
+using Nebx.Verdict.AspNetCore.Models;
 
 var builder = WebApplication.CreateBuilder(args);
 

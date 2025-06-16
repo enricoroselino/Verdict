@@ -1,12 +1,11 @@
 using Nebx.Verdict;
 using Nebx.Verdict.AspNetCore.Extensions;
-using Nebx.Verdict.AspNetCore.Models;
 
 namespace Api;
 
 public interface IWeatherRepository
 {
-    public Verdict<ResponseDto> GetWeatherForecast();
+    public Verdict<WeatherForecast[]> GetWeatherForecast();
 }
 
 public class WeatherRepository : IWeatherRepository
@@ -15,7 +14,7 @@ public class WeatherRepository : IWeatherRepository
     {
     }
 
-    public Verdict<ResponseDto> GetWeatherForecast()
+    public Verdict<WeatherForecast[]> GetWeatherForecast()
     {
         var summaries = new[]
         {
@@ -32,8 +31,6 @@ public class WeatherRepository : IWeatherRepository
             .ToArray();
 
         if (forecast.Length == 0) return Verdict.Failed("").NotFound();
-        var response = ResponseDto.Create(forecast);
-        
-        return Verdict.Success(response);
+        return Verdict.Success(forecast).Ok();
     }
 }
